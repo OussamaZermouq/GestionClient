@@ -1,0 +1,23 @@
+package com.example.gestionclient.dao;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int category_id;
+    private String titre;
+    private String description;
+    @OneToMany(mappedBy = "categorie")
+    private List<Produit> produits;
+
+}
