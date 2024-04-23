@@ -1,11 +1,11 @@
-package com.example.gestionclient.dao;
+package com.example.gestionclient.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -17,7 +17,7 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int commande_id;
     private String commande_titre;
-    private Date commande_date;
+    private LocalDate commande_date;
     private int quantitee;
     private String status;
 

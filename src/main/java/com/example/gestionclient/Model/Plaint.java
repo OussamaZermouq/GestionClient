@@ -1,11 +1,11 @@
-package com.example.gestionclient.dao;
+package com.example.gestionclient.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -17,7 +17,7 @@ public class Plaint {
     private int plaint_id;
     private String plaint_titre;
     private String plaint_description;
-    private Date plaint_date;
+    private LocalDate plaint_date;
     private String plaint_status;
 
     @ManyToOne

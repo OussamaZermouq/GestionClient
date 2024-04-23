@@ -1,4 +1,4 @@
-package com.example.gestionclient.dao;
+package com.example.gestionclient.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

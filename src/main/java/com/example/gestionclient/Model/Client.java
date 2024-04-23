@@ -1,10 +1,9 @@
-package com.example.gestionclient.dao;
+package com.example.gestionclient.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.util.Date;
 import java.util.List;
@@ -24,6 +23,7 @@ public class Client {
     private String password;
     private String telephone;
     private String adresse;
+    private String status;
 
     @OneToMany(mappedBy = "client")
     private List<Commande> commande;
