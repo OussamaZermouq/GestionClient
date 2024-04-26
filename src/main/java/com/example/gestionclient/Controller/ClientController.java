@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/v1/Client")
+@RequestMapping("/api/v1/client")
 public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
