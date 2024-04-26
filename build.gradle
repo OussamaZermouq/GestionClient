@@ -4,24 +4,6 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.4'
 }
 
-//
-apply plugin: 'maven-publish'
-publishing {
-    publications {
-        customLibrary(MavenPublication) {
-            from components.java
-        }
-    }
-
-    repositories {
-        maven {
-            name = 'sampleRepo'
-            url = layout.buildDirectory.dir("repo")
-        }
-    }
-}
-gradle publish
-//
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
@@ -40,25 +22,38 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
+
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework:spring-web:6.1.6'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'com.mysql:mysql-connector-j:8.3.0'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    /*implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework:spring-web'
     implementation 'org.springframework.boot:spring-boot-starter-security:3.2.5'
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 
+     */
 
     compileOnly 'org.projectlombok:lombok'
-    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0-M2'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api'
 
     runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-
     annotationProcessor 'org.projectlombok:lombok'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 }
 
 tasks.named('test') {

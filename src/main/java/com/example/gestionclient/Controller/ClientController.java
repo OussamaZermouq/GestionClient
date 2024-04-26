@@ -16,7 +16,6 @@ public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
 
-
     @GetMapping
     public ResponseEntity<String> test(){
         return ResponseEntity.ok("Hello from secured endpoint");

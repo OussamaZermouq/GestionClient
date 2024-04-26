@@ -10,15 +10,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import static com.example.gestionclient.Model.ROLE.ADMIN;
 
+
 @SpringBootApplication
-@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class GestionClientApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GestionClientApplication.class, args);
     }
-
-
     @Bean
     public CommandLineRunner commandLineRunner(
             AuthenticationService service

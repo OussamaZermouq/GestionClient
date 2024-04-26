@@ -19,7 +19,7 @@ import static com.example.gestionclient.Model.ROLE.ADMIN;
 import static com.example.gestionclient.Model.ROLE.USER;
 import static org.springframework.http.HttpMethod.*;
 
-@Configuration
+
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
