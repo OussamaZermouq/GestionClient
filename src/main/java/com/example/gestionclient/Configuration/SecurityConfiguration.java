@@ -16,10 +16,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import static com.example.gestionclient.Model.ROLE.ADMIN;
-import static com.example.gestionclient.Model.ROLE.USER;
 import static org.springframework.http.HttpMethod.*;
 
 
+@Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
@@ -30,22 +30,19 @@ public class SecurityConfiguration {
     private final AuthenticationProvider authenticationProvider;
 
     //toutes les urls qui ne sont pas securise eg {home, help, contact,...}
-    private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**"};
+    private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**", "/api/v1/client/**"};
     private final LogoutHandler logoutHandler;
 
-    @Bean
-    public LogoutHandler getLogoutHandler() {
-        return logoutHandler;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req.requestMatchers(WHITE_LIST_URL)
                         .permitAll()
-                        .requestMatchers("/api/v1/client/**").hasAnyRole(ADMIN.name(), USER.name())
-                        .requestMatchers(GET, "/api/v1/client/**").hasAnyAuthority(ADMIN.name(), USER.name())
+                        /*.requestMatchers("/api/v1/client/**").hasAnyRole(ADMIN.name(), USER.name())*/
+                        .requestMatchers(GET, "/api/v1/client/**").hasAnyAuthority(ADMIN.name())
                         .requestMatchers(POST, "/api/v1/client/**").hasAnyAuthority(ADMIN.name())
                         .requestMatchers(PUT, "/api/v1/client/**").hasAnyAuthority(ADMIN.name())
                         .requestMatchers(DELETE, "/api/v1/client/**").hasAnyAuthority(ADMIN.name())
@@ -60,7 +57,6 @@ public class SecurityConfiguration {
                                 .logoutSuccessHandler(((request, response, authentication) -> SecurityContextHolder.clearContext())
                                 )
                 );
-
 
         return httpSecurity.build();
     }

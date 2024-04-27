@@ -12,6 +12,7 @@ import static com.example.gestionclient.Model.ROLE.ADMIN;
 
 
 @SpringBootApplication
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class GestionClientApplication {
 
     public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class GestionClientApplication {
                     .email("admin@mail.com")
                     .password("password")
                     .build();
-            System.out.println("Admin token: " + service.register(admin).getToken());
+            System.out.println("Admin token: " + service.register(admin).getAccessToken());
         };
     }
 }

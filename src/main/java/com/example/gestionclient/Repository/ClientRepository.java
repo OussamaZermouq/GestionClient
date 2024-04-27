@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
-    //we use this interface since it has the needed function pre declared
+    //we use this interface since it has the needed functions pre declared
 
 }

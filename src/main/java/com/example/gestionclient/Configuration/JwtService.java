@@ -12,17 +12,31 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
     private static final String SECRET_KEY="63736566764755436C714E63784C427A494A785976686C4F4247584A69515767";
+    private long refreshExpiration = 86400000 ;
+    private long jwtExpiration = 604800000 ;
     public String extractUsername(String jwt){
         return extractClaim(jwt, Claims::getSubject);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
+    public String generateToken(UserDetails userDetails) {
+        return generateToken(new HashMap<>(), userDetails);
+    }
+    public String generateToken(
+            Map<String, Object> extraClaims,
+            UserDetails userDetails
+    ) {
+        return buildToken(extraClaims, userDetails, jwtExpiration);
+    }
+    public String generateRefreshToken(UserDetails userDetails){
+        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
+    }
+
+    public String buildToken(Map<String, Object> extraClaims, UserDetails userDetails, long expiration){
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
@@ -38,13 +52,9 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
-    }
-
     public boolean isTokenValid(String jwt, UserDetails userDetails){
         final String username = extractUsername(jwt);
-        return username.equals(userDetails.getUsername()) && !isTokenExipred(jwt);
+        return (username.equals(userDetails.getUsername())) && !isTokenExipred(jwt);
     }
 
     public boolean isTokenExipred(String jwt){
@@ -56,8 +66,10 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String jwt){
-        return Jwts.parser()
+        return Jwts
+                .parserBuilder()
                 .setSigningKey(getSignInKey()) // The signing key is used to digitally sign the token
+                .build()
                 .parseClaimsJws(jwt)
                 .getBody();
     }
