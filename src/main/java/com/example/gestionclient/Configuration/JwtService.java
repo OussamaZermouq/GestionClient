@@ -17,8 +17,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
     private static final String SECRET_KEY="63736566764755436C714E63784C427A494A785976686C4F4247584A69515767";
-    private long refreshExpiration = 86400000 ;
-    private long jwtExpiration = 604800000 ;
+
     public String extractUsername(String jwt){
         return extractClaim(jwt, Claims::getSubject);
     }
@@ -30,9 +29,11 @@ public class JwtService {
             Map<String, Object> extraClaims,
             UserDetails userDetails
     ) {
+        long jwtExpiration = 604800000;
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
     public String generateRefreshToken(UserDetails userDetails){
+        long refreshExpiration = 86400000;
         return buildToken(new HashMap<>(), userDetails, refreshExpiration);
     }
 

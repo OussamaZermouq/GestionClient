@@ -1,11 +1,13 @@
 package com.example.gestionclient.Request;
 
+import com.example.gestionclient.Model.Commande;
+import com.example.gestionclient.Model.Plaint;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-
+import java.util.List;
 
 
 @Getter
@@ -21,4 +23,6 @@ public class ClientRequest {
     private String telephone;
     private String adresse;
     private String status;
+    private List<Commande> commandeList;
+    private List<Plaint> plaintsList;
 }
