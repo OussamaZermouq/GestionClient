@@ -32,6 +32,14 @@ public class CategoryController {
         return ResponseEntity.ok("Category deleted");
 
     }
+    @PutMapping("/modifyCategory/{id}")
+
+    public ResponseEntity<Category> modiferCategory(
+            @RequestBody Category category,
+            @PathVariable Integer id) throws Exception{
+        return categoryService.modify(category,id);
+    }
+
 
 
 

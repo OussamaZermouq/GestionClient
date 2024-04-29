@@ -3,7 +3,10 @@ package com.example.gestionclient.Service;
 import com.example.gestionclient.Model.Category;
 import com.example.gestionclient.Repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.EmptyStackException;
 import java.util.List;
@@ -32,5 +35,18 @@ public class CategoryService {
         }
 
     }
+    public ResponseEntity<Category> modify (Category category , Integer id ) throws  Exception{
+        Category Ca_mod = categoryRepository.findById(id).orElseThrow(()-> new Exception("Category doesnt exist"));
+        if (Ca_mod != null ){
+            Ca_mod.setTitre(category.getTitre());
+            Ca_mod.setDescription(category.getDescription());
+            Ca_mod.setProduits(category.getProduits());
+            Category nvCategory = categoryRepository.save(Ca_mod);
+            return ResponseEntity.ok(nvCategory);
+        }
+        return null;
+
+    }
+
 
 }
