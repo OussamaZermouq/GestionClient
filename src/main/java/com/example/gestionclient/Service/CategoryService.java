@@ -5,6 +5,7 @@ import com.example.gestionclient.Repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.EmptyStackException;
 import java.util.List;
 
 @Service
@@ -23,6 +24,13 @@ public class CategoryService {
 
     public List<Category> findAll(){
         return categoryRepository.findAll();
+    }
+    public void remove ( Integer id) throws Exception{
+        Category category_remove = categoryRepository.findById(id).orElseThrow(()->new Exception("category doesent exist"));
+        if (category_remove != null ){
+            categoryRepository.delete(category_remove);
+        }
+
     }
 
 }
