@@ -33,7 +33,6 @@ public class CategoryController {
 
     }
     @PutMapping("/modifyCategory/{id}")
-
     public ResponseEntity<Category> modiferCategory(
             @RequestBody Category category,
             @PathVariable Integer id) throws Exception{
