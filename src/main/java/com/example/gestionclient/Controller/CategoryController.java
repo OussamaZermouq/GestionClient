@@ -23,11 +23,12 @@ public class CategoryController {
         categoryService.save(category);
         return ResponseEntity.accepted().build();
     }
+    @GetMapping
     public ResponseEntity<List<Category>> findAllCategory ()
     {return ResponseEntity.ok(categoryService.findAll());}
 
     @DeleteMapping("/deleteCategory/{id}")
-    public ResponseEntity<String > deletCategory(@PathVariable Integer id )throws Exception{
+    public ResponseEntity<String > deleteCategory(@PathVariable Integer id )throws Exception{
         categoryService.remove(id);
         return ResponseEntity.ok("Category deleted");
 
