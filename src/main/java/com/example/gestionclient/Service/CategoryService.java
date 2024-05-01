@@ -5,10 +5,8 @@ import com.example.gestionclient.Repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.EmptyStackException;
+
 import java.util.List;
 
 @Service

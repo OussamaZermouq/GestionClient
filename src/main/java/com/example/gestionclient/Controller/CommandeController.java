@@ -31,7 +31,7 @@ public class CommandeController {
        commandeService.remove(id);
        return ResponseEntity.ok("Commande deleted");
    }
-    @PutMapping("/modifyCmmande/{id}")
+    @PutMapping("/modifyCommande/{id}")
     public ResponseEntity<Commande> modiferCommande(
             @RequestBody Commande commade,
             @PathVariable Integer id) throws Exception{
