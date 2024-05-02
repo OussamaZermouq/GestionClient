@@ -22,7 +22,6 @@ public class Client {
     private String client_prenom;
     private Date date_naiss;
     private String email;
-    private String password;
     private String telephone;
     private String adresse;
     private String status;

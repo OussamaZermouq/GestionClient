@@ -30,7 +30,10 @@ public class SecurityConfiguration {
     private final AuthenticationProvider authenticationProvider;
 
     //toutes les urls qui ne sont pas securise eg {home, help, contact,...}
-    private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**", "/api/v1/client/**"};
+    private static final String[] WHITE_LIST_URL = {
+            "/api/v1/auth/**",
+            "/api/v1/demo-controller/**",
+    };
     private final LogoutHandler logoutHandler;
 
 
@@ -41,11 +44,6 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req.requestMatchers(WHITE_LIST_URL)
                         .permitAll()
-                        .requestMatchers("/api/v1/client/**").hasAnyRole(ADMIN.name())
-                        .requestMatchers(GET, "/api/v1/client/**").hasAnyAuthority(ADMIN.name())
-                        .requestMatchers(POST, "/api/v1/client/**").hasAnyAuthority(ADMIN.name())
-                        .requestMatchers(PUT, "/api/v1/client/**").hasAnyAuthority(ADMIN.name())
-                        .requestMatchers(DELETE, "/api/v1/client/**").hasAnyAuthority(ADMIN.name())
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
