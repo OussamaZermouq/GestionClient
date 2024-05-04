@@ -18,7 +18,7 @@ public class GestionClientApplication {
     public static void main(String[] args) {
         SpringApplication.run(GestionClientApplication.class, args);
     }
-    @Bean
+  /*  @Bean
     public CommandLineRunner commandLineRunner(
             AuthenticationService service
     ) {
@@ -31,5 +31,5 @@ public class GestionClientApplication {
                     .build();
             System.out.println("Admin token: " + service.register(admin).getAccessToken());
         };
-    }
+    }*/
 }

@@ -1,7 +1,9 @@
 package com.example.gestionclient.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,9 +25,15 @@ public class Commande {
     private String status;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Client client;
 
-    @ManyToMany(mappedBy = "commandes")
+    @ManyToMany
+    @JoinTable(
+            name = "PRODUIT_COMMANDE",
+            joinColumns = @JoinColumn(name = "commande_id"),
+            inverseJoinColumns = @JoinColumn(name = "id_produit")
+    )
     private List<Produit> produits;
 
     @OneToOne

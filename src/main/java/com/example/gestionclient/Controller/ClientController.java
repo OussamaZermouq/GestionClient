@@ -1,6 +1,7 @@
 package com.example.gestionclient.Controller;
 
 import com.example.gestionclient.Model.Client;
+import com.example.gestionclient.Model.Commande;
 import com.example.gestionclient.Request.ClientRequest;
 import com.example.gestionclient.Service.ClientService;
 import jakarta.websocket.server.PathParam;
@@ -24,7 +25,6 @@ public class ClientController {
     public ResponseEntity<List<Client>> findAllClient() {
         return ResponseEntity.ok(clientService.findAll());
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Client> findById(@PathVariable Integer id) throws Exception{
         Client client = clientService.findById(id).orElseThrow(()->new Exception("Client doesnt exists"));
