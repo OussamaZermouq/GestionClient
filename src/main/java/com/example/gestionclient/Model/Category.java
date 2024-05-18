@@ -1,12 +1,14 @@
 package com.example.gestionclient.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,6 +24,7 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "categorie")
-    private List<Produit> produits;
+    @JsonIgnoreProperties("categorie")
+    private List<Produit> produits = new ArrayList<>();
 
 }

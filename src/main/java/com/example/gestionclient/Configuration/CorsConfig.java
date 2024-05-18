@@ -15,6 +15,10 @@ public class CorsConfig {
         config.addAllowedOrigin("*");
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("DELETE");
         source.registerCorsConfiguration("/api/**", config); // Configure path mapping
         return new CorsFilter(source);
     }

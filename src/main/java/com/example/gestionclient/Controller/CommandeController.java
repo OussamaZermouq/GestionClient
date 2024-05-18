@@ -18,6 +18,7 @@ public class CommandeController {
     private CommandeService commandeService ;
    @PostMapping("/addCommande")
     public ResponseEntity<String> addCommande (@RequestBody Commande commande){
+       System.out.println(commande);
        commandeService.save(commande);
        return  ResponseEntity.accepted().build();
    }
@@ -27,9 +28,14 @@ public class CommandeController {
    }
 
 
-   @DeleteMapping("/deleteComande")
+   @DeleteMapping("/deleteComande/{id}")
     public ResponseEntity<String> deleteCommande(@PathVariable Integer id)throws Exception{
-       commandeService.remove(id);
+       try{
+           commandeService.remove(id);
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       }
        return ResponseEntity.ok("Commande deleted");
    }
 

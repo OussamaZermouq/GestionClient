@@ -24,6 +24,7 @@ public class ProduitController {
     }
     @GetMapping
     public ResponseEntity<List<Produit>> findAllProduit(){
+
         return ResponseEntity.ok(produitService.findAll());
     }
     @DeleteMapping("/deleteProduit")

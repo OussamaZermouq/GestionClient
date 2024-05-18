@@ -1,6 +1,7 @@
 package com.example.gestionclient.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,8 +24,8 @@ public class Produit {
     private String couleur;
     private float prix;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToOne
+    @JsonIgnoreProperties("produits")
     private Category categorie;
 
     @ManyToMany(mappedBy = "produits")

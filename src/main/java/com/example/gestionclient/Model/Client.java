@@ -2,6 +2,7 @@ package com.example.gestionclient.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,7 @@ public class Client {
     private String status;
 
     @OneToMany(mappedBy = "client")
+    @JsonManagedReference
     private List<Commande> commande;
 
     @OneToMany(mappedBy = "client")

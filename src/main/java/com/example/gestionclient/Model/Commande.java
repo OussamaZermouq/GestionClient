@@ -1,5 +1,6 @@
 package com.example.gestionclient.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class Commande {
     private String status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private Client client;
 
     @ManyToMany
