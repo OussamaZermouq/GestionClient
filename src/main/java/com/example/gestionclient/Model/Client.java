@@ -29,11 +29,11 @@ public class Client {
     private String adresse;
     private String status;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private List<Commande> commande;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Plaint> plaints;
 }

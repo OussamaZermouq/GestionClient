@@ -24,12 +24,12 @@ public class GestionClientApplication {
     ) {
         return args -> {
             var admin = RegisterRequest.builder()
-                    .firstname("Admin")
-                    .lastname("Admin")
-                    .email("admin2@mail.com")
-                    .password("password")
+                    .firstname("analytics")
+                    .lastname("analytics")
+                    .email("analytics@mail.com")
+                    .password("analytics")
                     .build();
-            System.out.println("Admin token: " + service.register(admin).getAccessToken());
+            System.out.println("Analytics token: " + service.register(admin).getAccessToken());
         };
     }*/
 }

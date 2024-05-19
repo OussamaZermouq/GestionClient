@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommandeService {
     private final CommandeRepository commandeRepository;
-    public void save (Commande commande){
+    public void save(Commande commande){
         var va = Commande. builder().commande_id(commande.getCommande_id())
                 .commande_titre(commande.getCommande_titre())
                 .commande_date(commande.getCommande_date()).quantitee(commande.getQuantitee())
@@ -38,8 +38,6 @@ public class CommandeService {
             commande_mod.setPlaint(commande.getPlaint());
             Commande nvCommade = commandeRepository.save(commande_mod);
             return ResponseEntity.ok(nvCommade);
-
-
 
         }
         return null;
