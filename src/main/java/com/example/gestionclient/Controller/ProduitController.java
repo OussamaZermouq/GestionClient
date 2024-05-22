@@ -27,6 +27,11 @@ public class ProduitController {
 
         return ResponseEntity.ok(produitService.findAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Produit> getProduitId(@PathVariable int id) throws Exception {
+        return ResponseEntity.ok(produitService.findById(id));
+    }
     @DeleteMapping("/deleteProduit")
     public ResponseEntity<String> deleteProduit(@PathVariable Integer id)throws Exception{
         produitService.remove(id);

@@ -29,7 +29,7 @@ public class JwtService {
             Map<String, Object> extraClaims,
             UserDetails userDetails
     ) {
-        long jwtExpiration = 604800000;
+        long jwtExpiration = 432000;
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
     public String generateRefreshToken(UserDetails userDetails){
@@ -43,7 +43,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000*60*24))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(SignatureAlgorithm.HS256, getSignInKey())
                 .compact();
     }

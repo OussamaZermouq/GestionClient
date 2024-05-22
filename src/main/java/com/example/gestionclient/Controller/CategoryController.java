@@ -23,6 +23,11 @@ public class CategoryController {
         categoryService.save(category);
         return ResponseEntity.accepted().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> findCategoryById(@PathVariable int id) throws Exception {
+        return ResponseEntity.ok(categoryService.findCategoryById(id));
+    }
     @GetMapping
     public ResponseEntity<List<Category>> findAllCategory ()
     {return ResponseEntity.ok(categoryService.findAll());}

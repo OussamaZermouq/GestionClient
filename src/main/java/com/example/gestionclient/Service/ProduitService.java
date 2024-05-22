@@ -23,6 +23,12 @@ public class ProduitService {
     public List<Produit> findAll(){
         return produitRepository.findAll();
     }
+
+    public Produit findById(int id) throws Exception{
+        return produitRepository.findById(id).orElseThrow(()->new Exception("produit doesent exist"));
+    }
+
+
     public void remove ( Integer id) throws Exception{
         Produit produit_remove = produitRepository.findById(id).orElseThrow(()->new Exception("produit doesent exist"));
         if (produit_remove != null ){

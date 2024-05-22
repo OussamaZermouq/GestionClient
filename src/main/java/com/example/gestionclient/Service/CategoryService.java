@@ -26,6 +26,10 @@ public class CategoryService {
     public List<Category> findAll(){
         return categoryRepository.findAll();
     }
+
+    public Category findCategoryById(int id) throws Exception{
+        return categoryRepository.findById(id).orElseThrow(()->new Exception("Category Non trouver"));
+    }
     public void remove ( Integer id) throws Exception{
         Category category_remove = categoryRepository.findById(id).orElseThrow(()->new Exception("category doesent exist"));
         if (category_remove != null ){

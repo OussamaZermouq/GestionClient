@@ -33,6 +33,7 @@ public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = {
             "/api/v1/auth/**",
             "/api/v1/demo-controller/**",
+            "/api/v1/analytics/**",
     };
     private final LogoutHandler logoutHandler;
 
