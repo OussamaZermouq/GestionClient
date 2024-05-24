@@ -32,7 +32,7 @@ public class ProduitController {
     public ResponseEntity<Produit> getProduitId(@PathVariable int id) throws Exception {
         return ResponseEntity.ok(produitService.findById(id));
     }
-    @DeleteMapping("/deleteProduit")
+    @DeleteMapping("/deleteProduit/{id}")
     public ResponseEntity<String> deleteProduit(@PathVariable Integer id)throws Exception{
         produitService.remove(id);
         return ResponseEntity.ok("produit deleted");

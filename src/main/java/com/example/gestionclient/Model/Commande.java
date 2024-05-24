@@ -24,11 +24,9 @@ public class Commande {
     private LocalDate commande_date;
     private int quantitee;
     private String status;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     private Client client;
-
     @ManyToMany
     @JoinTable(
             name = "PRODUIT_COMMANDE",
@@ -36,7 +34,6 @@ public class Commande {
             inverseJoinColumns = @JoinColumn(name = "id_produit")
     )
     private List<Produit> produits;
-
     @OneToOne
     private Plaint plaint;
 }
