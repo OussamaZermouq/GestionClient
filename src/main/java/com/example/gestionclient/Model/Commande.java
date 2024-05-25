@@ -34,6 +34,7 @@ public class Commande {
             inverseJoinColumns = @JoinColumn(name = "id_produit")
     )
     private List<Produit> produits;
+
     @OneToOne
     private Plaint plaint;
 }
